@@ -1,5 +1,7 @@
 package backend;
 
+import cpp.Object;
+import backend.GradientText.TextPreset;
 import lime.utils.Assets;
 import openfl.utils.Assets as OpenFlAssets;
 import haxe.Json;
@@ -19,6 +21,9 @@ typedef WeekFile =
 	var hideStoryMode:Bool;
 	var hideFreeplay:Bool;
 	var difficulties:String;
+
+	@:optional var presetData:Array<TextPreset>;
+	@:optional var songPresets:Array<Array<String>>;
 }
 
 class WeekData {
@@ -39,6 +44,8 @@ class WeekData {
 	public var hideStoryMode:Bool;
 	public var hideFreeplay:Bool;
 	public var difficulties:String;
+
+	public var presetData:Array<TextPreset>;
 
 	public var fileName:String;
 
@@ -66,6 +73,8 @@ class WeekData {
 		for (field in Reflect.fields(weekFile))
 			if(Reflect.fields(this).contains(field)) // Reflect.hasField() won't fucking work :/
 				Reflect.setProperty(this, field, Reflect.getProperty(weekFile, field));
+
+		this.presetData = weekFile.presetData;
 
 		this.fileName = fileName;
 	}

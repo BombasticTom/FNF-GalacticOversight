@@ -61,17 +61,12 @@ class ChartingState extends MusicBeatState
 	var curNoteTypes:Array<String> = [];
 	var undos = [];
 	var redos = [];
-	var eventStuff:Array<Dynamic> =
+	var eventStuff:Array<Array<String>> =
 	[
 		['', "Nothing. Yep, that's right."],
-		['Dadbattle Spotlight', "Used in Dad Battle,\nValue 1: 0/1 = ON/OFF,\n2 = Target Dad\n3 = Target BF"],
 		['Hey!', "Plays the \"Hey!\" animation from Bopeebo,\nValue 1: BF = Only Boyfriend, GF = Only Girlfriend,\nSomething else = Both.\nValue 2: Custom animation duration,\nleave it blank for 0.6s"],
 		['Set GF Speed', "Sets GF head bopping speed,\nValue 1: 1 = Normal speed,\n2 = 1/2 speed, 4 = 1/4 speed etc.\nUsed on Fresh during the beatbox parts.\n\nWarning: Value must be integer!"],
-		['Philly Glow', "Exclusive to Week 3\nValue 1: 0/1/2 = OFF/ON/Reset Gradient\n \nNo, i won't add it to other weeks."],
-		['Kill Henchmen', "For Mom's songs, don't use this please, i love them :("],
 		['Add Camera Zoom', "Used on MILF on that one \"hard\" part\nValue 1: Camera zoom add (Default: 0.015)\nValue 2: UI zoom add (Default: 0.03)\nLeave the values blank if you want to use Default."],
-		['BG Freaks Expression', "Should be used only in \"school\" Stage!"],
-		['Trigger BG Ghouls', "Should be used only in \"schoolEvil\" Stage!"],
 		['Play Animation', "Plays an animation on a Character,\nonce the animation is completed,\nthe animation changes to Idle\n\nValue 1: Animation to play.\nValue 2: Character (Dad, BF, GF)"],
 		['Camera Follow Pos', "Value 1: X\nValue 2: Y\n\nThe camera won't change the follow point\nafter using this, for getting it back\nto normal, leave both values blank."],
 		['Alt Idle Animation', "Sets a specified suffix after the idle animation name.\nYou can use this to trigger 'idle-alt' if you set\nValue 2 to -alt\n\nValue 1: Character to set (Dad, BF or GF)\nValue 2: New suffix (Leave it blank to disable)"],
@@ -79,7 +74,16 @@ class ChartingState extends MusicBeatState
 		['Change Character', "Value 1: Character to change (Dad, BF, GF)\nValue 2: New character's name"],
 		['Change Scroll Speed', "Value 1: Scroll Speed Multiplier (1 is default)\nValue 2: Time it takes to change fully in seconds."],
 		['Set Property', "Value 1: Variable name\nValue 2: New value"],
-		['Play Sound', "Value 1: Sound file name\nValue 2: Volume (Default: 1), ranges from 0 to 1"]
+		['Play Sound', "Value 1: Sound file name\nValue 2: Volume (Default: 1), ranges from 0 to 1"],
+		['Fade to Black', "like the cool song"],
+		['Play Video', "Plays a cutscene mid-song (located in videos folder!)\nCareful when using it - this shit crashes hard."],
+		['Camera Zoom', "Camera zoom done right!"],
+		['Change Control', ""],
+		['Concurrence Event', "Really fucking cool event\nmade by yours truly\n\nValue 1 - character dad changes to\n\nValue 2 - Time it takes to change (also it's offset)\nDefault is 1 beat."],
+		['Be There Glitch', "gltich!"],
+		['Heal Flash Mechanic', "Flashes Camera and fucks your health up (Yeah!)\nValue 1 - Amount of health to which it drains itself\nDefault is 0.1 (10%)"],
+		['E-102 Gamma', "All systems.. FULL POWER!\n\nValue 1 is split into 3 values, each separated by a comma (,)\nRed, Green and Blue"],
+		['turnballs', "\"uses shaders\" (stop the cap!)\n\nv1 - should be either true or false (true turns them on,\nfalse turns them off)"]
 	];
 
 	var _file:FileReference;

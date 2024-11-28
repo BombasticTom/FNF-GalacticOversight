@@ -379,12 +379,8 @@ class Paths
 	{
 		var imageLoaded:FlxGraphic = image(key, library, allowGPU);
 		#if MODS_ALLOWED
-		var xmlExists:Bool = false;
-
-		var xml:String = modsXml(key);
-		if(FileSystem.exists(xml)) xmlExists = true;
-
-		return FlxAtlasFrames.fromSparrow(imageLoaded, (xmlExists ? File.getContent(xml) : getPath('images/$key.xml', library)));
+		var xmlPath:String = modsXml(key);
+		return FlxAtlasFrames.fromSparrow(imageLoaded, (FileSystem.exists(xmlPath) ? File.getContent(xmlPath) : getPath('images/$key.xml', library)));
 		#else
 		return FlxAtlasFrames.fromSparrow(imageLoaded, getPath('images/$key.xml', library));
 		#end

@@ -1,5 +1,6 @@
 package objects;
 
+import flixel.graphics.frames.FlxFramesCollection;
 import backend.animation.PsychAnimationController;
 
 import flixel.util.FlxSort;
@@ -11,7 +12,6 @@ import haxe.Json;
 
 import backend.Song;
 import backend.Section;
-import states.stages.objects.TankmenBG;
 
 typedef CharacterFile = {
 	var animations:Array<AnimArray>;
@@ -125,14 +125,6 @@ class Character extends FlxSprite
 		if(animOffsets.exists('singLEFTmiss') || animOffsets.exists('singDOWNmiss') || animOffsets.exists('singUPmiss') || animOffsets.exists('singRIGHTmiss')) hasMissAnimations = true;
 		recalculateDanceIdle();
 		dance();
-
-		switch(curCharacter)
-		{
-			case 'pico-speaker':
-				skipDance = true;
-				loadMappedAnims();
-				playAnim("shoot1");
-		}
 	}
 
 	public function loadCharacterFile(json:Dynamic)
@@ -149,7 +141,10 @@ class Character extends FlxSprite
 		updateHitbox();
 
 		if(!isAnimateAtlas)
-			frames = Paths.getAtlas(json.image);
+		{
+			var texAtlas:FlxFramesCollection = Paths.getAtlas(json.image);
+			(texAtlas == null) ? visible = false : frames = texAtlas;
+		}
 		#if flxanimate
 		else
 		{
@@ -297,12 +292,10 @@ class Character extends FlxSprite
 	inline public function isAnimationNull():Bool
 		return !isAnimateAtlas ? (animation.curAnim == null) : (atlas.anim.curSymbol == null);
 
+	var _lastPlayedAnimation:String;
 	inline public function getAnimationName():String
 	{
-		var name:String = '';
-		@:privateAccess
-		if(!isAnimationNull()) name = !isAnimateAtlas ? animation.curAnim.name : atlas.anim.lastPlayedAnim;
-		return (name != null) ? name : '';
+		return _lastPlayedAnimation;
 	}
 
 	public function isAnimationFinished():Bool
@@ -365,8 +358,16 @@ class Character extends FlxSprite
 	public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
 	{
 		specialAnim = false;
-		if(!isAnimateAtlas) animation.play(AnimName, Force, Reversed, Frame);
-		else atlas.anim.play(AnimName, Force, Reversed, Frame);
+		if(!isAnimateAtlas)
+		{
+			animation.play(AnimName, Force, Reversed, Frame);
+		}
+		else
+		{
+			atlas.anim.play(AnimName, Force, Reversed, Frame);
+			atlas.update(0);
+		}
+		_lastPlayedAnimation = AnimName;
 
 		if (animOffsets.exists(AnimName))
 		{
@@ -386,22 +387,6 @@ class Character extends FlxSprite
 			if (AnimName == 'singUP' || AnimName == 'singDOWN')
 				danced = !danced;
 		}
-	}
-
-	function loadMappedAnims():Void
-	{
-		try
-		{
-			var noteData:Array<SwagSection> = Song.loadFromJson('picospeaker', Paths.formatToSongPath(PlayState.SONG.song)).notes;
-			for (section in noteData) {
-				for (songNotes in section.sectionNotes) {
-					animationNotes.push(songNotes);
-				}
-			}
-			TankmenBG.animationNotes = animationNotes;
-			animationNotes.sort(sortAnims);
-		}
-		catch(e:Dynamic) {}
 	}
 
 	function sortAnims(Obj1:Array<Dynamic>, Obj2:Array<Dynamic>):Int

@@ -1,0 +1,4 @@
+"uses shaders" (stop the cap!)
+
+v1 - should be either true or false (true turns them on,
+false turns them off)

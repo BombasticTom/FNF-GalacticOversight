@@ -1,0 +1,121 @@
+{
+    "song": {
+        "events": [
+            [
+                39384.6153846154,
+                [
+                    [
+                        "Update Dad Rotation",
+                        "400",
+                        "1"
+                    ],
+                    [
+                        "Change Bloodmoon Speed",
+                        "1250",
+                        ""
+                    ]
+                ]
+            ],
+            [
+                49230.7692307693,
+                [
+                    [
+                        "MoonGone",
+                        "",
+                        ""
+                    ]
+                ]
+            ],
+            [
+                59076.9230769231,
+                [
+                    [
+                        "Update Dad Rotation",
+                        "40",
+                        "1.2"
+                    ],
+                    [
+                        "Change Bloodmoon Speed",
+                        "200",
+                        ""
+                    ]
+                ]
+            ],
+            [
+                78769.2307692309,
+                [
+                    [
+                        "Update Dad Rotation",
+                        "400",
+                        "1"
+                    ],
+                    [
+                        "Change Bloodmoon Speed",
+                        "1250",
+                        ""
+                    ]
+                ]
+            ],
+            [
+                98000.0000000002,
+                [
+                    [
+                        "Update Dad Rotation",
+                        "100",
+                        "1.1"
+                    ],
+                    [
+                        "Change Bloodmoon Speed",
+                        "800",
+                        ""
+                    ]
+                ]
+            ],
+            [
+                117076.923076923,
+                [
+                    [
+                        "Update Dad Rotation",
+                        "40",
+                        "1.2"
+                    ],
+                    [
+                        "Change Bloodmoon Speed",
+                        "200",
+                        ""
+                    ]
+                ]
+            ],
+            [
+                137846.153846154,
+                [
+                    [
+                        "Update Dad Rotation",
+                        "200",
+                        "1"
+                    ],
+                    [
+                        "Change Bloodmoon Speed",
+                        "1250",
+                        ""
+                    ]
+                ]
+            ],
+            [
+                177230.769230769,
+                [
+                    [
+                        "Change Bloodmoon Speed",
+                        "50",
+                        ""
+                    ],
+                    [
+                        "Update Dad Rotation",
+                        "20",
+                        "1.2"
+                    ]
+                ]
+            ]
+        ]
+    }
+}

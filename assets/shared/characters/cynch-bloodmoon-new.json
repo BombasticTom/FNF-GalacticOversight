@@ -1,0 +1,95 @@
+{
+	"animations": [
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "Idle"
+		},
+		{
+			"offsets": [64, -89],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "Left"
+		},
+		{
+			"offsets": [57, -45],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "Down"
+		},
+		{
+			"offsets": [-2, 95],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "Up"
+		},
+		{
+			"offsets": [74, -91],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "Right"
+		},
+		{
+			"loop": true,
+			"offsets": [0, 0],
+			"anim": "idle-loop",
+			"fps": 24,
+			"name": "Idle",
+			"indices": [6, 7, 8, 9, 10, 11, 12, 13]
+		},
+		{
+			"loop": true,
+			"offsets": [64, -89],
+			"anim": "singLEFT-loop",
+			"fps": 24,
+			"name": "Left",
+			"indices": [6, 7, 8, 9]
+		},
+		{
+			"loop": true,
+			"offsets": [57, -45],
+			"anim": "singDOWN-loop",
+			"fps": 24,
+			"name": "Down",
+			"indices": [6, 7, 8, 9]
+		},
+		{
+			"loop": true,
+			"offsets": [-2, 95],
+			"anim": "singUP-loop",
+			"fps": 24,
+			"name": "Up",
+			"indices": [16, 17, 18, 19]
+		},
+		{
+			"loop": true,
+			"offsets": [74, -91],
+			"anim": "singRIGHT-loop",
+			"fps": 24,
+			"name": "Right",
+			"indices": [6, 7, 8, 9]
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "characters/commision_Sprite2",
+	"position": [-150, -60],
+	"healthicon": "cynch",
+	"flip_x": false,
+	"healthbar_colors": [156, 86, 255],
+	"camera_position": [140, 170],
+	"sing_duration": 4,
+	"scale": 0.8,
+	"_editor_isPlayer": false
+}

@@ -1,5 +1,6 @@
 package backend;
 
+import objects.Note;
 import flixel.FlxBasic;
 import flixel.FlxObject;
 import flixel.FlxSubState;
@@ -44,6 +45,8 @@ class BaseStage extends FlxBasic
 
 	public var defaultCamZoom(get, set):Float;
 	public var camFollow(get, never):FlxObject;
+
+	public var mustHitSection:Bool = false; // Modding this in cuz Base Psych doesn't have it
 
 	public function new()
 	{
@@ -119,8 +122,8 @@ class BaseStage extends FlxBasic
 	// overrides
 	function startCountdown() if(onPlayState) return PlayState.instance.startCountdown(); else return false;
 	function endSong() if(onPlayState)return PlayState.instance.endSong(); else return false;
-	function moveCameraSection() if(onPlayState) moveCameraSection();
-	function moveCamera(isDad:Bool) if(onPlayState) moveCamera(isDad);
+	function moveCameraSection() if(onPlayState) game.moveCameraSection();
+	function moveCamera(isDad:Bool) if(onPlayState) game.moveCamera(isDad);
 	inline private function get_paused() return game.paused;
 	inline private function get_songName() return game.songName;
 	inline private function get_isStoryMode() return PlayState.isStoryMode;
@@ -164,4 +167,6 @@ class BaseStage extends FlxBasic
 		return game.defaultCamZoom;
 	}
 	inline private function get_camFollow():FlxObject return game.camFollow;
+
+	public function opponentNoteHit(note:Note) {}
 }

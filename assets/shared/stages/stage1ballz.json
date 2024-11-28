@@ -1,0 +1,15 @@
+{
+	"directory": "freeplay",
+	"defaultZoom": 0.9,
+	"isPixelStage": false,
+
+	"boyfriend": [1550, 475],
+	"girlfriend": [915, 481],
+	"opponent": [410, 525],
+	"hide_girlfriend": false,
+
+	"camera_boyfriend": [-125, 0],
+	"camera_opponent": [0, 0],
+	"camera_girlfriend": [0, 0],
+	"camera_speed": 1
+}

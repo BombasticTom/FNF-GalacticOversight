@@ -1,0 +1,33 @@
+{
+	"songs": [
+		[
+			"Test",
+			"bf",
+			[
+				146,
+				113,
+				253
+			],
+			"How'd you find this??\nDrain you of your sanity\nFace the thing that should not be."
+		]
+	],
+	"hiddenUntilUnlocked": false,
+	"hideFreeplay": true,
+	"weekBackground": "stage",
+	"difficulties": "Normal",
+	"weekCharacters": [
+		"dad",
+		"gf",
+		"bf"
+	],
+	"storyName": "how are you here",
+	"weekName": "testweek",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"hideStoryMode": true,
+	"weekBefore": "freeplay",
+	"startUnlocked": true
+}

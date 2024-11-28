@@ -17,7 +17,6 @@ class MainMenuState extends MusicBeatState
 	var optionShit:Array<String> = [
 		'story_mode',
 		'freeplay',
-		#if MODS_ALLOWED 'mods', #end
 		#if ACHIEVEMENTS_ALLOWED 'awards', #end
 		'credits',
 		#if !switch 'donate', #end
@@ -117,7 +116,7 @@ class MainMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if (FlxG.sound.music.volume < 0.8)
+		if (!selectedSomethin && FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * elapsed;
 			if (FreeplayState.vocals != null)
@@ -153,12 +152,16 @@ class MainMenuState extends MusicBeatState
 					if (ClientPrefs.data.flashing)
 						FlxFlicker.flicker(magenta, 1.1, 0.15, false);
 
+					if (optionShit[curSelected] == "story_mode" || optionShit[curSelected] == "freeplay")
+						FlxG.sound.music.fadeOut(1.3);
+
 					FlxFlicker.flicker(menuItems.members[curSelected], 1, 0.06, false, false, function(flick:FlxFlicker)
 					{
 						switch (optionShit[curSelected])
 						{
 							case 'story_mode':
 								MusicBeatState.switchState(new StoryMenuState());
+
 							case 'freeplay':
 								MusicBeatState.switchState(new FreeplayState());
 

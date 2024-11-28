@@ -1,0 +1,71 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [0, 0],
+			"anim": "idle",
+			"fps": 30,
+			"name": "Static_Idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [0, 0],
+			"anim": "singLEFT",
+			"fps": 30,
+			"name": "Static_Left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [0, 0],
+			"anim": "singDOWN",
+			"fps": 30,
+			"name": "Static_Down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [0, 0],
+			"anim": "singUP",
+			"fps": 30,
+			"name": "Static_Up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [0, 0],
+			"anim": "singRIGHT",
+			"fps": 30,
+			"name": "Static_Right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [368, 165],
+			"anim": "attack",
+			"fps": 30,
+			"name": "Static_Attack",
+			"indices": []
+		},
+		{
+			"loop": true,
+			"offsets": [0, 0],
+			"anim": "idle-loop",
+			"fps": 30,
+			"name": "Static_Idle",
+			"indices": [8, 9, 10, 11, 12, 13]
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "characters/Static_Cynch",
+	"position": [140, 160],
+	"healthicon": "dejectioncynch",
+	"flip_x": false,
+	"healthbar_colors": [98, 87, 115],
+	"camera_position": [-340, -150],
+	"sing_duration": 4.00000000000001,
+	"scale": 0.9,
+	"_editor_isPlayer": false
+}

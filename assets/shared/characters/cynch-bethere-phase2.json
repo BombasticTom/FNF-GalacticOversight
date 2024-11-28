@@ -1,0 +1,55 @@
+{
+	"animations": [
+		{
+			"offsets": [5, -25],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "Phase2_Down i"
+		},
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "Phase2_Idle"
+		},
+		{
+			"offsets": [0, 42],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "Phase2_Up i"
+		},
+		{
+			"offsets": [3, 2],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "Phase2_Right i"
+		},
+		{
+			"offsets": [16, -32],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "Phase2_Left i"
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "characters/Cynch-BeThere-2",
+	"position": [60, 300],
+	"healthicon": "cynch",
+	"flip_x": true,
+	"healthbar_colors": [156, 86, 255],
+	"camera_position": [-500, -160],
+	"sing_duration": 6.1,
+	"scale": 1,
+	"_editor_isPlayer": true
+}

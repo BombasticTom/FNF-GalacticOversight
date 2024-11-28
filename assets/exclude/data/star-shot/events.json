@@ -1,0 +1,69 @@
+{
+    "song": {
+        "speed": 3,
+        "stage": "stage",
+        "player1": "pico-player",
+        "player2": "bf-opponent",
+        "player3": null,
+        "events": [
+            [
+                172800,
+                [
+                    [
+                        "Change Scroll Speed",
+                        "1.0333333333",
+                        "1"
+                    ]
+                ]
+            ],
+            [
+                174348.387096774,
+                [
+                    [
+                        "Change Scroll Speed",
+                        "1.0666666667",
+                        "0.9"
+                    ]
+                ]
+            ],
+            [
+                175848.387096774,
+                [
+                    [
+                        "Change Scroll Speed",
+                        "1.1",
+                        "0.8"
+                    ]
+                ]
+            ],
+            [
+                177302.93255132,
+                [
+                    [
+                        "Change Scroll Speed",
+                        "1.1333333333",
+                        "0.7"
+                    ]
+                ]
+            ],
+            [
+                178714.697257202,
+                [
+                    [
+                        "Change Scroll Speed",
+                        "1.1666666667",
+                        "0"
+                    ]
+                ]
+            ]
+        ],
+        "notes": [],
+        "splashSkin": null,
+        "validScore": false,
+        "gfVersion": "gf",
+        "bpm": 150,
+        "arrowSkin": null,
+        "needsVoices": true,
+        "song": "Star Shot"
+    }
+}

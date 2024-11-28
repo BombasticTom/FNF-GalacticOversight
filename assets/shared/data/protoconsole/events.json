@@ -1,0 +1,16 @@
+{
+	"song": {
+		"events": [
+			[
+				123870.967741936,
+				[
+					[
+						"Play Video",
+						"protoconsolecutscene",
+						""
+					]
+				]
+			]
+		]
+	}
+}

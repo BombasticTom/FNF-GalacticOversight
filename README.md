@@ -30,6 +30,15 @@ same goes for *Lua Scripts*, comment out or delete the line with `LUA_ALLOWED`, 
 * Smokey - Sprite Atlas Support
 * Nebula the Zorua - some Lua reworks
 * superpowers04 - LUA JIT Fork
+
+#### Fonts Used
+* Brian J. Bonislawsky DBA Astigmatic (AOETI) - Audiowide Regular
+* [The Goldman Project](https://github.com/magictype/goldman) - Goldman Bold
+* [The Rubik Filtered Project](https://github.com/NaN-xyz/Rubik-Filtered) - Rubik Glitched & Rubik Burned
+* [The Faculty Glyphic](https://github.com/DylanYoungKoto/FacultyGlyphic) - Faulty Filtered
+* [Sideshow](https://fonts.google.com/?query=Sideshow) - [Rock Salt Regular](https://fonts.google.com/specimen/Rock+Salt)
+
+For more information about these fonts, please see the included licenses located inside the [fonts](./assets/fonts) folder
 _____________________________________
 
 # Features

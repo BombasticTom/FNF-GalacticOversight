@@ -1,22 +1,51 @@
 {
 	"songs": [
-		["Bopeebo", "dad", [146, 113, 253]],
-		["Fresh", "dad", [146, 113, 253]],
-		["Dad Battle", "dad", [146, 113, 253]]
+		[
+			"Concurrence",
+			"cynch",
+			[146, 113, 253],
+			"Their first encounter.\n\nAfter a quick exchange, both engage in a battle, with neither knowing what will happen next. The beginning of this crazy journey starts here.",
+			"bluey"
+		],
+		[
+			"Stargaze",
+			"cynch",
+			[146, 113, 253],
+			"After an intense first round, they decide to chill out for a bit. The protagonist feels confident while our celestial friend is worn out. Little do they know this is just the beginning, both of Cynch's story and their battle.",
+			"bluey"
+		],
+		[
+			"Bloodmoon",
+			"cynch",
+			[146, 113, 253],
+			"It all comes down to this.\nCynch's final gambit, and his final chance at victory. It's no holds barred from here on. He spilled his past, and wants to fight for a better future. He doesn't want you holding back, and he won't be either.",
+			"blurple"
+		]
 	],
 
-	"weekCharacters": [
-		"dad",
-		"bf",
-		"gf"
-	],
+	"hiddenUntilUnlocked": false,
+	"hideFreeplay": false,
 	"weekBackground": "stage",
-
-	"storyName": "Daddy Dearest",
+	"difficulties": "Normal,Hard,Mania",
+	"weekCharacters": ["", "", ""],
+	"storyName": "After a long day, Boyfriend and Girlfriend settle down beside the ocean. They soon spot a blue-haired figure speeding by. Intrigued, our protagonist stops him, allowing the floodgates to open.",
+	"weekName": "goversightw1",
+	"freeplayColor": [146, 113, 253],
+	"hideStoryMode": false,
 	"weekBefore": "tutorial",
-	"weekName": "Week 1",
 	"startUnlocked": true,
 
-	"hideStoryMode": false,
-	"hideFreeplay": false
+	"presetData": [
+		{
+			"name": "bluey",
+			"font": "BOOKOS.ttf",
+			"gradient": ["#00ffff", "#00aaff"],
+			"scale": [1, 1.3]
+		},
+		{
+			"name": "blurple",
+			"font": "Goldman-Bold.ttf",
+			"gradient": ["#8E7FFF", "#AE7FFF"]
+		}
+	]
 }

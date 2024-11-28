@@ -1,5 +1,7 @@
 package states;
 
+import states.editors.CharacterEditorState;
+import backend.Song;
 import backend.WeekData;
 import backend.Highscore;
 
@@ -151,26 +153,61 @@ class TitleState extends MusicBeatState
 		}
 
 		FlxG.mouse.visible = false;
+
 		#if FREEPLAY
+
+		FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+
+		LoadingState.loadAndSwitchState(new MainMenuState());
 		MusicBeatState.switchState(new FreeplayState());
+
+		#elseif STATETEST
+
+		FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+		MusicBeatState.switchState(new FreeplayTest());
+
+		#elseif STAGE
+
+		FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+
+		WeekData.reloadWeekFiles();
+
+		PlayState.storyWeek = WeekData.weeksList.indexOf("freeplay");
+		Difficulty.loadFromWeek(WeekData.weeksLoaded.get("freeplay"));
+
+		var songLowercase:String = Paths.formatToSongPath("Be There");
+		var poop:String = Highscore.formatSong(songLowercase, 1);
+
+		PlayState.SONG = Song.loadFromJson(poop, songLowercase);
+		PlayState.isStoryMode = false;
+		PlayState.storyDifficulty = 1;
+		PlayState.chartingMode = true;
+
+		trace('CURRENT WEEK: ' + WeekData.getWeekFileName());
+
+		var dumstate = new PlayState();
+		LoadingState.loadAndSwitchState(new PlayState());
+
 		#elseif CHARTING
+
 		MusicBeatState.switchState(new ChartingState());
+
 		#else
-		if(FlxG.save.data.flashing == null && !FlashingState.leftState) {
+
+		if(FlxG.save.data.flashing == null && !FlashingState.leftState)
+		{
 			FlxTransitionableState.skipNextTransIn = true;
 			FlxTransitionableState.skipNextTransOut = true;
 			MusicBeatState.switchState(new FlashingState());
-		} else {
+		}
+		else
+		{
 			if (initialized)
 				startIntro();
 			else
-			{
-				new FlxTimer().start(1, function(tmr:FlxTimer)
-				{
-					startIntro();
-				});
-			}
+				new FlxTimer().start(1, (tmr:FlxTimer) -> startIntro());
 		}
+
 		#end
 	}
 

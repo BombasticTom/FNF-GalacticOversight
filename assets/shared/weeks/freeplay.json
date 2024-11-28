@@ -1,0 +1,121 @@
+{
+	"songs": [
+		[
+			"Star Shot",
+			"cynch",
+			[
+				146,
+				113,
+				253
+			],
+			"After an eventful day, our celestial friend is on his way home through a dark alley. He senses danger however, and defends himself against bullets coming towards him. From the shadows steps a ginger kid, the same one he was warned about.",
+			"shawty"
+		],
+		[
+			"Static Strand",
+			"cynch",
+			[
+				146,
+				113,
+				253
+			],
+			"Twas a stormy sleepover in Cynch's manor. Suddenly, our protagonist is awoken by eerie sounds from the closet. Deep within a broken flickering CRT screen, a mysterious figure calls to him. This entity turns out to be none other than... Cynch?",
+			"stranding"
+		],
+		[
+			"Protoconsole",
+			"cynch",
+			[146, 113, 253],
+			"A melody from another universe. Our protagonist is feeling extra cocky after winning a second round, with our celestial friend feeling frustrated. Our protagonist gets to him, before a certain someone helps him calm down at the last minute.",
+			"consolussy"
+		],
+		[
+			"Genocide",
+			"cynch",
+			[
+				146,
+				113,
+				253
+			],
+			"On a cold day, Cynch was laying on top of a rooftop. Straight away, a skinless man approaches him. Frustrated for losing His Battle, he's on a lookout for a familiar brunette, and puts up a friendly battle with Cynch to convince him of her dangers.\nHe sings, in the name of revenge...",
+			"tabbey"
+		],
+		[
+			"Be There",
+			"cynch",
+			[
+				146,
+				113,
+				253
+			],
+			"Cynch revists the bridge he once stood on that fateful day. Out of nowhere, a giant glitch with the power to transcend universes comes to face him. Not knowing the stakes, our brave hero plays along, before everything around him begins to shift...",
+			"cube"
+		],
+		[
+			"Concurrence (O.G Mix)",
+			"cynch",
+			[
+				146,
+				113,
+				253
+			],
+			"A blast from the past.",
+			"originalgangster"
+		]
+	],
+	"hiddenUntilUnlocked": false,
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"difficulties": "Normal,Hard,Mania",
+	"weekCharacters": [
+		"",
+		"",
+		""
+	],
+	"storyName": "how are you also here",
+	"weekName": "goversightfreeplay",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"hideStoryMode": true,
+	"weekBefore": "week1",
+	"startUnlocked": true,
+
+	"presetData": [
+		{
+			"name": "shawty",
+			"font": "RockSalt-Regular.ttf",
+			"fontSize": 40,
+			"gradient": ["#97ffba", "#73fff3"],
+			"scale": [1, 1.3]
+		},
+		{
+			"name": "tabbey",
+			"font": "Audiowide-Regular.ttf",
+			"gradient": ["#f6ffb0", "#ff8871"]
+		},
+		{
+			"name": "stranding",
+			"font": "RubikBurned-Regular.ttf",
+			"gradient": ["#808080", "#919191"]
+		},
+		{
+			"name": "cube",
+			"font": "RubikGlitch-Regular.ttf",
+			"gradient": ["#c1d6ff", "#c665ff"]
+		},
+		{
+			"name": "originalgangster",
+			"font": "Audiowide-Regular.ttf",
+			"fontSize": 35,
+			"gradient": ["#607dc2", "#3f5dfe"]
+		},
+		{
+			"name": "consolussy",
+			"font": "BOOKOS.ttf",
+			"gradient": ["#AE7FFF", "#8E7FFF"]
+		}
+	]
+}

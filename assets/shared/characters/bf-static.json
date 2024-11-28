@@ -1,0 +1,17 @@
+{
+	"no_antialiasing": true,
+	"image": "",
+	"position": [
+		140,
+		160
+	],
+	"healthicon": "bf",
+	"flip_x": false,
+	"healthbar_colors": [72, 55, 82],
+	"camera_position": [
+		-340,
+		-150
+	],
+	"sing_duration": 4,
+	"scale": 0.9
+}

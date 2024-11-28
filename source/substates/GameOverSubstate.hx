@@ -1,5 +1,7 @@
 package substates;
 
+import flixel.graphics.FlxGraphic;
+import flixel.graphics.frames.FlxFramesCollection;
 import backend.WeekData;
 
 import objects.Character;
@@ -43,6 +45,10 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	var charX:Float = 0;
 	var charY:Float = 0;
+
+	var dummySpr:Character;
+	var square:FlxSprite;
+
 	override function create()
 	{
 		instance = this;
@@ -64,6 +70,56 @@ class GameOverSubstate extends MusicBeatSubstate
 		camFollow.setPosition(boyfriend.getGraphicMidpoint().x + boyfriend.cameraPosition[0], boyfriend.getGraphicMidpoint().y + boyfriend.cameraPosition[1]);
 		FlxG.camera.focusOn(new FlxPoint(FlxG.camera.scroll.x + (FlxG.camera.width / 2), FlxG.camera.scroll.y + (FlxG.camera.height / 2)));
 		add(camFollow);
+
+		if (characterName == "cynch-bethere-dead")
+		{
+			remove(boyfriend);
+			boyfriend.alpha = 0;
+
+			boyfriend.playAnim("deathLoop");
+			boyfriend.animation.pause();
+
+			dummySpr = new Character(boyfriend.x, boyfriend.y, "cynch-bethere-dead", true);
+			dummySpr.alpha = 0;
+
+			square = new FlxSprite(boyfriend.x + boyfriend.width + 50, boyfriend.y);
+			square.antialiasing = ClientPrefs.data.antialiasing;
+			square.frames = Paths.getSparrowAtlas("characters/BeThere-GO");
+
+			square.animation.addByPrefix("first", "Cube_First", 24, false);
+			square.animation.addByPrefix("confirm", "Cube_Confirm", 24, false);
+			square.animation.addByPrefix("loop", "Cube_Loop", 24);
+
+			dummySpr.animation.finishCallback = (_) -> {
+				add(boyfriend);
+	
+				FlxTween.tween(boyfriend, {alpha: 1}, 25/24, {
+					onComplete: (_) -> {
+
+						boyfriend.alpha = 1;
+						boyfriend.animation.resume();
+
+						coolStartDeath();
+						square.animation.play("loop", true);
+						square.offset.set(-90, 0);
+						startedDeath = true;
+
+						remove(dummySpr);
+						dummySpr.destroy();
+					}
+				});
+			};
+
+			add(dummySpr);
+			add(square);
+
+			dummySpr.playAnim("firstDeath");
+			square.animation.play("first", true);
+			FlxTween.tween(dummySpr, {alpha: 1}, 9/24);
+
+			FlxG.camera.follow(camFollow, LOCKON, 0.6);
+			moveCamera = true;
+		}
 		
 		PlayState.instance.setOnScripts('inGameOver', true);
 		PlayState.instance.callOnScripts('onGameOverStart', []);
@@ -156,7 +212,21 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (!isEnding)
 		{
 			isEnding = true;
+
+			if (dummySpr != null)
+			{
+				FlxTween.cancelTweensOf(boyfriend);
+				add(boyfriend);
+				boyfriend.alpha = 1;
+
+				remove(dummySpr);
+				dummySpr.destroy();
+			}
+
 			boyfriend.playAnim('deathConfirm', true);
+			square?.animation.play("confirm", true);
+			square?.offset.set(0, -7);
+
 			FlxG.sound.music.stop();
 			FlxG.sound.play(Paths.music(endSoundName));
 			new FlxTimer().start(0.7, function(tmr:FlxTimer)

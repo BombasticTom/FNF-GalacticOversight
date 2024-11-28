@@ -1,6 +1,6 @@
 {
 	"songs": [
-		["Tutorial", "gf", [165, 0, 77]]
+		["tutorial", "gf", [165, 0, 77], "Your first date.", "gf"]
 	],
 
 	"weekCharacters": [
@@ -10,11 +10,21 @@
 	],
 	"weekBackground": "stage",
 
-	"storyName": "",
+	"storyName": "Your first date.",
+	"difficulties": "Normal",
 	"weekBefore": "tutorial",
 	"weekName": "Tutorial",
 	"startUnlocked": true,
 
 	"hideStoryMode": false,
-	"hideFreeplay": false
+	"hideFreeplay": false,
+
+	"presetData": [
+		{
+			"name": "gf",
+			"font": "phantommuff.ttf",
+			"fontSize": 40,
+			"gradient": ["#ff0077", "#ff00bb"]
+		}
+	]
 }

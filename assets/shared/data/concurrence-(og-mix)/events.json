@@ -1,0 +1,39 @@
+{
+    "song": {
+        "speed": 3,
+        "stage": "stage1ballz",
+        "player1": "bf",
+        "player2": "cynch",
+        "player3": null,
+        "events": [
+            [
+                64719.1011235955,
+                [
+                    [
+                        "turnballs",
+                        "false",
+                        ""
+                    ]
+                ]
+            ],
+            [
+                86292.1348314608,
+                [
+                    [
+                        "turnballs",
+                        "true",
+                        "true"
+                    ]
+                ]
+            ]
+        ],
+        "notes": [],
+        "splashSkin": null,
+        "validScore": false,
+        "gfVersion": "gf",
+        "bpm": 178,
+        "arrowSkin": null,
+        "needsVoices": true,
+        "song": "Concurrence"
+    }
+}
