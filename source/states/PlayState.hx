@@ -404,8 +404,9 @@ class PlayState extends MusicBeatState
 
 			if (cutsceneEnd != null)
 				endCallback = () -> {
-					endingSong = true;
-					startVideo(cutsceneEnd);
+					var vid:VideoSprite = startVideo(cutsceneEnd);
+					vid.finishCallback = endSong;
+					vid.onSkip = endSong;
 				}
 		}
 

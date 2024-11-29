@@ -67,7 +67,7 @@ class GlitchShader extends FlxShader
 			
 			// Copy original pixel
 		
-			vec3 outCol = flixel_texture2D(bitmap, uv);
+			vec3 outCol = flixel_texture2D(bitmap, uv).rgb;
 		
 			// Randomly offset slices horizontally
 		
