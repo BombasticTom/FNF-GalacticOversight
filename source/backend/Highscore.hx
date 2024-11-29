@@ -1,5 +1,7 @@
 package backend;
 
+import states.FreeplayState.SongMetadata;
+
 class Highscore
 {
 	public static var weekScores:Map<String, Int> = new Map();
@@ -86,6 +88,23 @@ class Highscore
 			setScore(daSong, 0);
 
 		return songScores.get(daSong);
+	}
+
+	public static function hasPlayedSong(song:SongMetadata):Bool
+	{
+		// Search for every song difficulty to make sure the player has played the song
+		Difficulty.loadFromWeek(WeekData.weeksLoaded.get(WeekData.weeksList[song.week]));
+
+		for (diff in 0...Difficulty.list.length)
+		{
+			var formattedSong:String = formatSong(song.songName, diff);
+			var score:Null<Int> = songScores.get(formattedSong);
+
+			if (score != null && score > 0)
+				return true;
+		}
+
+		return false;
 	}
 
 	public static function getRating(song:String, diff:Int):Float

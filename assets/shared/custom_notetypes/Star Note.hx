@@ -4,6 +4,9 @@ var graphic:FlxGraphic = Paths.image("notes/starNote");
 var sound:FlxSound = FlxG.sound.load(Paths.sound("heal"), 0.5);
 var dumTween:FlxTween;
 
+var healthDrain:Bool = PlayState.storyDifficulty > 0;
+var drainAmount:Float = (PlayState.storyDifficulty > 1) ? 0.04 : 0.03;
+
 function putTheFriesInTheBag()
 {
 	if (dumTween != null)
@@ -48,4 +51,11 @@ function goodNoteHit(note:Note)
 function noteMiss(note:Note)
 {
 	putTheFriesInTheBag();
+}
+
+function onUpdate(elapsed:Float)
+{
+	// Reason we pick camZooming is to know when dad starts singing
+	if (healthDrain && game.camZooming)
+		game.health -= drainAmount * elapsed;
 }

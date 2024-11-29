@@ -1,5 +1,6 @@
 package states;
 
+import flixel.graphics.FlxGraphic;
 import backend.GradientText;
 import backend.GradientText.TextPreset;
 import backend.Song;
@@ -14,6 +15,8 @@ class FreeplayState extends StoryBookTemplate<SongMetadata>
 	// To avoid errors lmao
 	public static var vocals:FlxSound = null;
 	public static function destroyFreeplayVocals() {}
+
+	final UNKNOWN_GRAPHIC:FlxGraphic = Paths.image("freeplay/unknown");
 
 	inline private function _updateSongLastDifficulty()
 	{
@@ -61,24 +64,32 @@ class FreeplayState extends StoryBookTemplate<SongMetadata>
 		description.text = song.description;
 		description.offset.y = description.height * .5;
 
-		gradientText(song.songName);
+		gradientText(song);
 		resetTweenSequence();
 
 		changeDiff();
 	}
 
-	public function addSong(songName:String, weekNum:Int, songCharacter:String, ?description:String) {
-		levelsLoaded.push(new SongMetadata(songName, weekNum, songCharacter, 0, description));
+	public function addSong(songName:String, weekNum:Int, songCharacter:String, ?description:String):SongMetadata {
+		var song = new SongMetadata(songName, weekNum, songCharacter, 0, description);
+		levelsLoaded.push(song);
+		return song;
 	}
 
-	private function gradientText(txt:String, ?preset:TextPreset)
+	private function gradientText(song:SongMetadata, ?preset:TextPreset)
 	{
-		var scale:Array<Int> = preset?.scale ?? [1, 1];
+		if (song.playedSong)
+		{
+			var scale:Array<Int> = preset?.scale ?? [1, 1];
 
-		var graphic = GradientText.getGradient(txt);
-		songNameSprite.loadGraphic(graphic);
-		
-		songNameSprite.scale.set(scale[0], scale[1]);
+			var graphic = GradientText.getGradient(song.songName);
+			songNameSprite.loadGraphic(graphic);
+			
+			songNameSprite.scale.set(scale[0], scale[1]);
+		}
+		else
+			songNameSprite.loadGraphic(UNKNOWN_GRAPHIC);
+
 		songNameSprite.updateHitbox();
 		songNameSprite.offset.x = songNameSprite.frameWidth * .5;
 		songNameSprite.offset.y = songNameSprite.frameHeight * .5;
@@ -121,9 +132,15 @@ class FreeplayState extends StoryBookTemplate<SongMetadata>
 
 			for (song in week.songs)
 			{
-				addSong(song[0], i, song[1], song[3]);
-				Paths.image('freeplay/icons/${Paths.formatToSongPath(song[0])}');
-				GradientText.getGradient(song[0], presets.get(song[4]));
+				var songData = addSong(song[0], i, song[1], song[3]);
+				Paths.image('freeplay/icons/${Paths.formatToSongPath(songData.songName)}');
+
+				// If we didn't play the song yet we don't wanna generate a graphic for it
+				// Cuz it's supposed to be unknown and it's up to the player to discover it
+				// Smart optimization 😎
+
+				if (songData.playedSong)
+					GradientText.getGradient(songData.songName, presets.get(song[4]));
 			}
 		}
 	}
@@ -151,6 +168,8 @@ class SongMetadata
 	public var lastDifficulty:String = null;
 	public var description:String = "";
 
+	public var playedSong:Bool;
+
 	public function new(song:String, week:Int, songCharacter:String, color:Int, description = "")
 	{
 		this.songName = song;
@@ -159,6 +178,8 @@ class SongMetadata
 		this.color = color;
 		this.folder = Mods.currentModDirectory;
 		this.description = description;
+
+		playedSong = Highscore.hasPlayedSong(this);
 
 		if(this.folder == null) this.folder = '';
 	}
