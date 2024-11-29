@@ -1,0 +1,63 @@
+{
+	"animations": [
+		{
+			"offsets": [0, 0],
+			"loop": false,
+			"fps": 30,
+			"anim": "idle",
+			"indices": [],
+			"name": "Idle"
+		},
+		{
+			"offsets": [95, 0],
+			"loop": false,
+			"fps": 30,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "Left"
+		},
+		{
+			"offsets": [30, -60],
+			"loop": false,
+			"fps": 30,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "Down"
+		},
+		{
+			"offsets": [-31, 33],
+			"loop": false,
+			"fps": 30,
+			"anim": "singUP",
+			"indices": [],
+			"name": "Up"
+		},
+		{
+			"offsets": [50, -5],
+			"loop": false,
+			"fps": 30,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "Right"
+		},
+		{
+			"offsets": [50, -60],
+			"loop": true,
+			"fps": 30,
+			"anim": "singDOWN-loop",
+			"indices": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+			"name": "Down"
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "characters/cynch-variant",
+	"position": [0, 10],
+	"healthicon": "cynch",
+	"flip_x": false,
+	"healthbar_colors": [156, 86, 255],
+	"camera_position": [-150, 100],
+	"sing_duration": 4.00000000000001,
+	"scale": 0.9,
+	"_editor_isPlayer": false
+}

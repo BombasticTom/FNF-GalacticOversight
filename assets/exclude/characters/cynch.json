@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "Cynch Idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				270,
+				-125
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "Cynch Left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				80,
+				-131
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "Cynch Right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				210,
+				192
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "Cynch Down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				160,
+				200
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "Cynch Up",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/Cynch_Assets",
+	"position": [
+		0,
+		-100
+	],
+	"healthicon": "cynch",
+	"flip_x": false,
+	"healthbar_colors": [
+		156,
+		86,
+		255
+	],
+	"camera_position": [
+		-30,
+		-20
+	],
+	"sing_duration": 4,
+	"scale": 0.7
+}

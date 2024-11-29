@@ -1,0 +1,106 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "Idle Cynch"
+		},
+		{
+			"offsets": [
+				245,
+				1
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "Left Cynch"
+		},
+		{
+			"offsets": [
+				30,
+				18
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "Down Cynch"
+		},
+		{
+			"offsets": [
+				44,
+				-27
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "Right Cynch"
+		},
+		{
+			"offsets": [
+				-8,
+				12
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "Up Cynch"
+		},
+		{
+			"offsets": [
+				30,
+				18
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "singDOWN-loop",
+			"indices": [
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18
+			],
+			"name": "Down Cynch"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/Cynch_Sans",
+	"position": [
+		50,
+		-160
+	],
+	"healthicon": "cynch",
+	"flip_x": false,
+	"healthbar_colors": [
+		57,
+		119,
+		216
+	],
+	"camera_position": [
+		260,
+		120
+	],
+	"sing_duration": 6.1,
+	"scale": 0.7
+}

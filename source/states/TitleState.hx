@@ -94,12 +94,12 @@ class TitleState extends MusicBeatState
 		#if CHECK_FOR_UPDATES
 		if(ClientPrefs.data.checkForUpdates && !closedState) {
 			trace('checking for update');
-			var http = new haxe.Http("https://raw.githubusercontent.com/ShadowMario/FNF-PsychEngine/main/gitVersion.txt");
+			var http = new haxe.Http("https://raw.githubusercontent.com/BombasticTom/FNF-GalacticOversight/main/gitVersion.txt");
 
 			http.onData = function (data:String)
 			{
 				updateVersion = data.split('\n')[0].trim();
-				var curVersion:String = MainMenuState.psychEngineVersion.trim();
+				var curVersion:String = MainMenuState.galacticOversightVersion.trim();
 				trace('version online: ' + updateVersion + ', your version: ' + curVersion);
 				if(updateVersion != curVersion) {
 					trace('versions arent matching!');
@@ -586,45 +586,53 @@ class TitleState extends MusicBeatState
 					FlxG.sound.music.fadeIn(4, 0, 0.7);
 				case 2:
 					#if PSYCH_WATERMARKS
-					createCoolText(['Psych Engine by'], 40);
+					createCoolText(['Galactic Oversight team']);
 					#else
 					createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
 					#end
-				case 4:
+				case 5:
 					#if PSYCH_WATERMARKS
-					addMoreText('Shadow Mario', 40);
-					addMoreText('Riveren', 40);
+					addMoreText('Presents');
+					// addMoreText('Riveren', 40);
 					#else
 					addMoreText('present');
 					#end
-				case 5:
+				case 8:
 					deleteCoolText();
-				case 6:
+				case 9:
 					#if PSYCH_WATERMARKS
 					createCoolText(['Not associated', 'with'], -40);
 					#else
 					createCoolText(['In association', 'with'], -40);
 					#end
-				case 8:
+				case 13:
 					addMoreText('newgrounds', -40);
 					ngSpr.visible = true;
-				case 9:
+				case 16:
 					deleteCoolText();
 					ngSpr.visible = false;
-				case 10:
-					createCoolText([curWacky[0]]);
-				case 12:
-					addMoreText(curWacky[1]);
-				case 13:
-					deleteCoolText();
-				case 14:
-					addMoreText('Friday');
-				case 15:
-					addMoreText('Night');
-				case 16:
-					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
-
 				case 17:
+					createCoolText([curWacky[0]]);
+				case 21:
+					addMoreText(curWacky[1]);
+				case 24:
+					deleteCoolText();
+				case 25:
+					curWacky = FlxG.random.getObject(getIntroTextShit());
+					deleteCoolText();
+					createCoolText([curWacky[0]]);
+				case 29:
+					addMoreText(curWacky[1]);
+				case 33:
+					deleteCoolText();
+				case 34:
+					createCoolText(['Friday Night Funkin']);
+				case 35:
+					addMoreText('Galactic');
+				case 36:
+					addMoreText('Oversight'); // credTextShit.text += '\nFunkin';
+
+				case 37:
 					skipIntro();
 			}
 		}

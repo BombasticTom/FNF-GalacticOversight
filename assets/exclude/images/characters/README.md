@@ -1,0 +1,1 @@
+Characters with no compression 😹

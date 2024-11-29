@@ -1,4 +1,4 @@
-:: quicker way of compiling and quicky changing things :D
+:: quicker way of compiling and quicky changing things :D (Very experimental using this is NOT advised)
 @echo off
 echo UPDATING CHANGES IN MODS...
 robocopy "export\release\windows\bin\mods" ".\mods" /e /move /njh /ndl /nc /ns /np /nfl

@@ -56,6 +56,6 @@ function noteMiss(note:Note)
 function onUpdate(elapsed:Float)
 {
 	// Reason we pick camZooming is to know when dad starts singing
-	if (healthDrain && game.camZooming)
+	if (!game.endingSong && healthDrain && game.camZooming)
 		game.health -= drainAmount * elapsed;
 }

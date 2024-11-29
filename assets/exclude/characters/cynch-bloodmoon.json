@@ -1,0 +1,63 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [10, 10],
+			"anim": "idle",
+			"fps": 24,
+			"name": "Moon Idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-3, 5],
+			"anim": "hey",
+			"fps": 24,
+			"name": "Moon Not Bad",
+			"indices": []
+		},
+		{
+			"loop": true,
+			"offsets": [75, -46],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "Moon Left",
+			"indices": []
+		},
+		{
+			"loop": true,
+			"offsets": [51, 122],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "Moon Down",
+			"indices": []
+		},
+		{
+			"loop": true,
+			"offsets": [24, 297],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "Moon Up",
+			"indices": []
+		},
+		{
+			"loop": true,
+			"offsets": [-28, 62],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "Moon Right",
+			"indices": []
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "characters/Cynch Bloodmoon",
+	"position": [-220, 0],
+	"healthicon": "cynch",
+	"flip_x": false,
+	"healthbar_colors": [156, 86, 255],
+	"camera_position": [-130, -170],
+	"sing_duration": 4,
+	"scale": 1,
+	"_editor_isPlayer": false
+}
