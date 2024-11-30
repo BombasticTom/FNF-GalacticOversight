@@ -15,7 +15,7 @@ class OutdatedState extends MusicBeatState
 		warnText = new FlxText(0, 0, FlxG.width,
 			'Hello! New update for Galactic Oversight mod has dropped!\n
 			You are currently playing on v${MainMenuState.galacticOversightVersion}\n
-			Please press the ACCEPT key to update to v${TitleState.updateVersion}!\n
+			Please press the ACCEPT key to update to v${TitleState.onlineVersion}!\n
 			You can press BACK key to proceed anyway.\n
 			\n
 			Thank you for playing our mod!',

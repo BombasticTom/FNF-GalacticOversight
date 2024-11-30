@@ -79,91 +79,117 @@ class WeekData {
 		this.fileName = fileName;
 	}
 
-	public static function reloadWeekFiles(isStoryMode:Null<Bool> = false)
+	public static function reloadWeekFiles(isStoryMode:Bool = false)
 	{
 		weeksList = [];
 		weeksLoaded.clear();
-		#if MODS_ALLOWED
-		var directories:Array<String> = [Paths.mods(), Paths.getSharedPath()];
-		var originalLength:Int = directories.length;
 
-		for (mod in Mods.parseList().enabled)
-			directories.push(Paths.mods(mod + '/'));
+		#if MODS_ALLOWED
+		final base_directories:Array<String> = [Paths.mods(), Paths.getSharedPath()];
+		var mod_directories:Array<String> = [for (mod in Mods.parseList().enabled) Paths.mods('$mod/')];
+		var global_mods:Array<String> = [for (mod in Mods.getGlobalMods()) Paths.mods('$mod/')];
 		#else
-		var directories:Array<String> = [Paths.getSharedPath()];
-		var originalLength:Int = directories.length;
+		final base_directories:Array<String> = [Paths.getSharedPath()];
+		final mod_directories:Array<String> = [];
+		final global_mods:Array<String> = [];
 		#end
 
-		var sexList:Array<String> = CoolUtil.coolTextFile(Paths.getSharedPath('weeks/weekList.txt'));
-		for (i in 0...sexList.length) {
-			for (j in 0...directories.length) {
-				var fileToCheck:String = directories[j] + 'weeks/' + sexList[i] + '.json';
-				if(!weeksLoaded.exists(sexList[i])) {
-					var week:WeekFile = getWeekFile(fileToCheck);
-					if(week != null) {
-						var weekFile:WeekData = new WeekData(week, sexList[i]);
+		// Prioritize mod folders over base game folders
+		// Or if mods are disabled, just preview base folders
+		var directories:Array<String> = mod_directories.concat(base_directories);
 
-						#if MODS_ALLOWED
-						if(j >= originalLength) {
-							weekFile.folder = directories[j].substring(Paths.mods().length, directories[j].length-1);
-						}
-						#end
+		// First check weeks in the shared list
+		var sharedWeekList:Array<String> = CoolUtil.coolTextFile(Paths.getSharedPath('weeks/weekList.txt'));
 
-						if(weekFile != null && (isStoryMode == null || (isStoryMode && !weekFile.hideStoryMode) || (!isStoryMode && !weekFile.hideFreeplay))) {
-							weeksLoaded.set(sexList[i], weekFile);
-							weeksList.push(sexList[i]);
-						}
-					}
+		for (week in sharedWeekList)
+		{
+			for (directory in directories)
+			{
+				// Try to find if some mods have overwritten this week
+
+				var path:String = '${directory}weeks/$week.json';
+				var isModDirectory:Bool = !base_directories.contains(directory);
+				var substrPrefix:String = #if MODS_ALLOWED isModDirectory ? Paths.mods() : #end "";
+
+				// If it's not a global mod, don't overwrite anything!!
+				if (isModDirectory && !global_mods.contains(directory))
+					continue;
+
+				// Check if the mod has an overwriten json
+				if(FileSystem.exists(path))
+				{
+					addWeek(week, path, directory, substrPrefix);
+					break;
 				}
 			}
 		}
 
-		#if MODS_ALLOWED
-		for (i in 0...directories.length) {
-			var directory:String = directories[i] + 'weeks/';
-			if(FileSystem.exists(directory)) {
-				var listOfWeeks:Array<String> = CoolUtil.coolTextFile(directory + 'weekList.txt');
-				for (daWeek in listOfWeeks)
-				{
-					var path:String = directory + daWeek + '.json';
-					if(FileSystem.exists(path))
-					{
-						addWeek(daWeek, path, directories[i], i, originalLength);
-					}
-				}
+		for (directory in directories) {
+			var directoryPath:String = '${directory}weeks/';
 
-				for (file in FileSystem.readDirectory(directory))
+			if(!FileSystem.exists(directoryPath))
+				continue;
+
+			var isModDirectory:Bool = !base_directories.contains(directory);
+			var substrPrefix:String = #if MODS_ALLOWED isModDirectory ? Paths.mods() : #end "";
+
+			// A text file displaying all ordered weeks inside of one week directory (if provided)
+			var listOfWeeks:Array<String> = CoolUtil.coolTextFile(directoryPath + 'weekList.txt');
+
+			// Locate all files inside of weeks folder of our chosen directory
+			var weekFiles:Array<String> = FileSystem.readDirectory(directoryPath);
+
+			for (week in listOfWeeks)
+			{
+				if (weeksLoaded.exists(week))
+					continue;
+
+				var path:String = '$directoryPath$week.json';
+
+				// Check if the mod has an overwriten json
+				if(FileSystem.exists(path))
 				{
-					var path = haxe.io.Path.join([directory, file]);
-					if (!FileSystem.isDirectory(path) && file.endsWith('.json'))
-					{
-						addWeek(file.substr(0, file.length - 5), path, directories[i], i, originalLength);
-					}
+					addWeek(week, path, directory, substrPrefix);
+					weekFiles.remove('$week.json');
 				}
 			}
+
+			// Lets sweep through weeks we have left off
+			for (file in weekFiles)
+			{
+				if (!file.endsWith('.json'))
+					continue;
+
+				var fileName:String = file.substr(0, file.length - 5);
+				var path:String = haxe.io.Path.join([directoryPath, file]);
+
+				if (!FileSystem.isDirectory(path))
+					addWeek(fileName, path, directory, substrPrefix);
+			}
 		}
-		#end
 	}
 
-	private static function addWeek(weekToCheck:String, path:String, directory:String, i:Int, originalLength:Int)
+	private static function addWeek(weekToCheck:String, path:String, directory:String, substrPrefix:String = "")
 	{
-		if(!weeksLoaded.exists(weekToCheck))
+		if(weeksLoaded.exists(weekToCheck))
+			return;
+
+		var week:WeekFile = getWeekFile(path);
+
+		if(week != null)
 		{
-			var week:WeekFile = getWeekFile(path);
-			if(week != null)
+			var weekFile:WeekData = new WeekData(week, weekToCheck);
+
+			#if MODS_ALLOWED
+			// Subtract path prefix to get the folder name
+			if(substrPrefix.length > 0 && directory.startsWith(substrPrefix))
+				weekFile.folder = directory.substr(substrPrefix.length);
+			#end
+
+			if((PlayState.isStoryMode && !weekFile.hideStoryMode) || (!PlayState.isStoryMode && !weekFile.hideFreeplay))
 			{
-				var weekFile:WeekData = new WeekData(week, weekToCheck);
-				if(i >= originalLength)
-				{
-					#if MODS_ALLOWED
-					weekFile.folder = directory.substring(Paths.mods().length, directory.length-1);
-					#end
-				}
-				if((PlayState.isStoryMode && !weekFile.hideStoryMode) || (!PlayState.isStoryMode && !weekFile.hideFreeplay))
-				{
-					weeksLoaded.set(weekToCheck, weekFile);
-					weeksList.push(weekToCheck);
-				}
+				weeksLoaded.set(weekToCheck, weekFile);
+				weeksList.push(weekToCheck);
 			}
 		}
 	}

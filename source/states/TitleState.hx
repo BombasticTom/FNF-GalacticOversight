@@ -68,7 +68,7 @@ class TitleState extends MusicBeatState
 
 	var titleJSON:TitleData;
 
-	public static var updateVersion:String = '';
+	public static var onlineVersion:String = '';
 
 	override public function create():Void
 	{
@@ -98,13 +98,39 @@ class TitleState extends MusicBeatState
 
 			http.onData = function (data:String)
 			{
-				updateVersion = data.split('\n')[0].trim();
-				var curVersion:String = MainMenuState.galacticOversightVersion.trim();
-				trace('version online: ' + updateVersion + ', your version: ' + curVersion);
-				if(updateVersion != curVersion) {
-					trace('versions arent matching!');
-					mustUpdate = true;
+				onlineVersion = data.split('\n')[0].trim();
+				var localVersion:String = MainMenuState.galacticOversightVersion.trim();
+				var buildType:String; // Type of build (OUTDATED, OFFICIAL, DEV)
+				
+				var onlineDigits:Array<String> = onlineVersion.split(".");
+				var localDigits:Array<String> = localVersion.split(".");
+				
+				while (onlineDigits.length < localDigits.length) onlineDigits.push("0");
+				while (localDigits.length < onlineDigits.length) localDigits.push("0");
+				
+				var onlineBuildNumber:Int = Std.parseInt(onlineDigits.join(""));
+				var localBuildNumber:Int = Std.parseInt(localDigits.join(""));
+
+				trace('Online version: ' + onlineVersion + ', Build version: ' + localVersion);
+
+				mustUpdate = onlineBuildNumber > localBuildNumber;
+
+				if(mustUpdate)
+					buildType = "OUTDATED";
+				else if (onlineBuildNumber < localBuildNumber)
+					buildType = "DEV";
+				else
+					buildType = "OFFICIAL";
+
+				switch(buildType)
+				{
+					case "OFFICIAL":
+						MainMenuState.prettyBuildVersion = MainMenuState.galacticOversightVersion;
+					default:
+						MainMenuState.prettyBuildVersion = '${MainMenuState.galacticOversightVersion} ($buildType)';
 				}
+
+				trace('Using $buildType build.');
 			}
 
 			http.onError = function (error) {
@@ -164,7 +190,7 @@ class TitleState extends MusicBeatState
 		#elseif STATETEST
 
 		FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
-		MusicBeatState.switchState(new FreeplayTest());
+		MusicBeatState.switchState(new FreeplayState());
 
 		#elseif STAGE
 
@@ -450,11 +476,11 @@ class TitleState extends MusicBeatState
 
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
-					if (mustUpdate) {
+					if (mustUpdate)
 						MusicBeatState.switchState(new OutdatedState());
-					} else {
+					else
 						MusicBeatState.switchState(new MainMenuState());
-					}
+
 					closedState = true;
 				});
 				// FlxG.sound.play(Paths.music('titleShoot'), 0.7);

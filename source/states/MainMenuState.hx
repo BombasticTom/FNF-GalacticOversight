@@ -10,7 +10,11 @@ import options.OptionsState;
 class MainMenuState extends MusicBeatState
 {
 	public static var psychEngineVersion:String = '0.7.3'; // This is also used for Discord RPC
-	public static var galacticOversightVersion:String = '1.0.1';
+	public static var galacticOversightVersion:String = '1.0.2';
+
+	// build version, displayed prettier
+	public static var prettyBuildVersion:String = galacticOversightVersion;
+
 	public static var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
@@ -87,9 +91,9 @@ class MainMenuState extends MusicBeatState
 			menuItem.screenCenter(X);
 		}
 
-		var ovVer:FlxText = new FlxText(12, FlxG.height - 80, 0, 'Galactic Oversight v${galacticOversightVersion}', 20);
+		var ovVer:FlxText = new FlxText(12, FlxG.height - 80, 0, 'Galactic Oversight v${prettyBuildVersion}', 18);
 		ovVer.scrollFactor.set();
-		ovVer.setFormat("VCR OSD Mono", 20, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		ovVer.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(ovVer);
 		var psychVer:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
 		psychVer.scrollFactor.set();
