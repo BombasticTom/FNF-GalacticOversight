@@ -27,7 +27,10 @@ class Bridge extends BaseStage
 		sky.scale.set(1.2, 1.2);
 		sky.updateHitbox();
 		sky.scrollFactor.set(0.2, 0.2);
-		sky.shader = glitch.shader;
+
+		if (ClientPrefs.data.flashing)
+			sky.shader = glitch.shader;
+
 		add(sky);
 
 		bridge = new FlxSprite(0, sky.y + 89, Paths.image("bethere/bridge"));

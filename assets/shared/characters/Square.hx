@@ -33,24 +33,29 @@ function onUpdate(elapsed:Float)
 		game.camFollow.setPosition(game.dad.getMidpoint().x + 230, game.dad.getMidpoint().y + 230);
 }
 
+var photosensitive:Bool = ClientPrefs.data.flashing;
+
 function opponentNoteHit(note:Note)
 {
-	var moveOffset = {x: 0.0, y: 0.0}
-
-	switch (note.noteData)
+	if (photosensitive)
 	{
-		case 0:
-			moveOffset.x = -moveVal;
-		case 1:
-			moveOffset.y = moveVal;
-		case 2:
-			moveOffset.y = -moveVal;
-		case 3:
-			moveOffset.x = moveVal;
-	}
+		var moveOffset = {x: 0.0, y: 0.0}
 
-	game.dad.x += moveOffset.x;
-	game.dad.y += moveOffset.y;
+		switch (note.noteData)
+		{
+			case 0:
+				moveOffset.x = -moveVal;
+			case 1:
+				moveOffset.y = moveVal;
+			case 2:
+				moveOffset.y = -moveVal;
+			case 3:
+				moveOffset.x = moveVal;
+		}
+
+		game.dad.x += moveOffset.x;
+		game.dad.y += moveOffset.y;
+	}
 
 	return Function_Continue;
 }

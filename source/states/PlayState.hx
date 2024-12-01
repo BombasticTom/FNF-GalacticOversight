@@ -407,6 +407,9 @@ class PlayState extends MusicBeatState
 					var vid:VideoSprite = startVideo(cutsceneEnd);
 					vid.finishCallback = endSong;
 					vid.onSkip = endSong;
+
+					camGame.visible = false;
+					camHUD.visible = false;
 				}
 		}
 

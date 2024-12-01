@@ -201,11 +201,11 @@ class TitleState extends MusicBeatState
 		PlayState.storyWeek = WeekData.weeksList.indexOf("freeplay");
 		Difficulty.loadFromWeek(WeekData.weeksLoaded.get("freeplay"));
 
-		var songLowercase:String = Paths.formatToSongPath("Be There");
+		var songLowercase:String = Paths.formatToSongPath("Bloodmoon");
 		var poop:String = Highscore.formatSong(songLowercase, 1);
 
 		PlayState.SONG = Song.loadFromJson(poop, songLowercase);
-		PlayState.isStoryMode = false;
+		PlayState.isStoryMode = true;
 		PlayState.storyDifficulty = 1;
 		PlayState.chartingMode = true;
 
